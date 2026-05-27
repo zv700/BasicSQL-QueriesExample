@@ -28,12 +28,12 @@
 
 ## Task 1: Join both tables so each patient's information is complete.
 
-Both tables have the same numbered ID numbers associated with people/patients and let's assume each ID from both tables corresponds to the same person
+- Both tables have the same ID numbers associated with people/patients. Let's assume in this example each ID from both tables corresponds to the same person.
 
-Notice the ID numbers are in order from least to greatest in People, but are not in any particular order in Patients.
+- Notice the ID numbers are in order from least to greatest in People, but are not in any particular order in Patients.
 To align info corresponding to the same ID value in both tables we use the keyword: ON  
 
-Join both tables into one complete view of all patient information:
+Join columns of both tables into one:
 
 ```sql
 SELECT 
@@ -49,9 +49,7 @@ INNER JOIN Patients
 
 ```
 
-The PatientInfo unified view now looks like this:
-
-### Patient Info
+Result:
 
 
 | ID | Name | Age | Height | Weight | Blood_type |
@@ -80,9 +78,7 @@ INNER JOIN Patients
 WHERE Patients.Blood_type = 'A';
 ```
 
-"Patient Info" now looks like:
-
-### Patient Info
+Result now looks like:
 
 
 | ID | Name | Age | Height | Weight | Blood_type |
@@ -108,9 +104,7 @@ WHERE Patients.Blood_type = 'A'
 	AND People.Age < 30;
 ```
 
-"Patient Info" now looks like:
-
-### Patient Info
+Result now looks like:
 
 
 | ID | Name | Age | Height | Weight | Blood_type |
@@ -119,6 +113,8 @@ WHERE Patients.Blood_type = 'A'
 | 3 | Tamir Man | 22 | 180 | 98 | A |
 
 ## Task 4: Select all patients whose last name is 'Park'.
+
+Query: uses WHERE columnName LIKE '%searchTerm%'
 
 ```sql
 SELECT 
@@ -131,7 +127,7 @@ SELECT
 FROM People
 INNER JOIN Patients 
     ON People.ID = Patients.ID
-WHERE People.Name LIKE '%Park';
+WHERE People.Name LIKE '%park';
 ```
 
 The result now looks like:
@@ -142,12 +138,14 @@ The result now looks like:
 | 4 | Allen Park | 40 | 172 | 87 | A |
 | 6 | Sally Park | 31 | 168 | 60 | null |
 
-LIKE "%Park" means we are searching for a name value that begins with any string of characters followed by the exact string 'Park'. 
+- LIKE '%park' means we are searching for a name value that begins with any string of characters followed by the string 'park'. Case sensitivity of the single quoted term in that follows LIKE depends on the specific SQL system being used.
 
-Another way of isolating the same two patients would be using LIKE "%Park%" which would select any row with a name that contains 'Park'.
+- Another way of isolating the same two patients would be using LIKE "%park%" which would select any row with a name that contains 'park', but would not be ideal in every situation because it would also include any patients who have the sequence of characters in "park" within their first name.
 
 
 ## Task 5: Select any patient whose blood_type value is null.
+
+Query: uses WHERE columnName IS NULL
 
 ```sql
 SELECT 
@@ -171,7 +169,9 @@ The result now looks like:
 | 6 | Sally Park | 31 | 168 | 60 | null |
 | 7 | Jamie Blue | 46 | null | null | null |
 
-If the request was for patients with non-null blood types you can add a NOT before NULL
+- If the request was for patients with non-null blood types you can add a NOT before NULL.
+
+Query: uses WHERE columnName IS NOT NULL
 
 ```sql
 SELECT 
@@ -200,7 +200,9 @@ The result now looks like:
 
 ## Task 6: Sort the patients by Age: ascending and descending.
 
-Sort by Age: in ascending order:
+- ORDER BY is used to sort rows by ascending ASC or descending DESC
+
+Query: Sort by Age in ascending order (least to greatest) -> ORDER BY columnName ASC
 
 ```sql
 SELECT 
@@ -230,7 +232,7 @@ The result now looks like:
 | 5 | Alice Green | 58 | 155 | 65 | B |
 
 
-Sort by Age: in descending order:
+Query: Sort by Age in descending order (greatest to least) -> ORDER BY columnName DESC
 
 ```sql
 SELECT 
