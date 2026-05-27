@@ -1,4 +1,4 @@
-# Basic SQL queries given two tables of example patient info:
+# Basic SQL queries given two tables of example/mock patient info:
 
 ### People
 
@@ -64,6 +64,9 @@ Result:
 
 ## Task 2: Select all patients whose Blood_type is A.
 
+- We maintain all of the selected columns and specify a specific column's value to search for using: WHERE columnName = 'desiredValue'
+
+
 ```sql
 SELECT 
     People.ID,
@@ -88,6 +91,10 @@ Result now looks like:
 | 4 | Allen Park | 40 | 172 | 87 | A |
 
 ## Task 3: Select all patients whose Blood_type is A, who is below the age of 30.
+
+- For columns that have number number values, we can use comparison operators for greater than > or less than <. 
+
+- This task asks for two conditions. We use AND between the two conditions within the WHERE statement because in this situation we are looking for cases where both conditions are true. 
 
 ```sql
 SELECT 
@@ -114,6 +121,10 @@ Result now looks like:
 
 ## Task 4: Select all patients whose last name is 'Park'.
 
+- LIKE '%park' means we are searching for a name value that begins with any string of characters followed by the string 'park'. Case sensitivity of the single quoted term in that follows LIKE depends on the specific SQL system being used.
+
+- Another way of isolating the same two patients would be using LIKE "%park%" which would select any row with a name that contains 'park'. While it would work in this situation, it would not be ideal in every situation because it would also include any patients who have the sequence of characters in "park" within their first name.
+
 Query: uses WHERE columnName LIKE '%searchTerm%'
 
 ```sql
@@ -138,9 +149,6 @@ The result now looks like:
 | 4 | Allen Park | 40 | 172 | 87 | A |
 | 6 | Sally Park | 31 | 168 | 60 | null |
 
-- LIKE '%park' means we are searching for a name value that begins with any string of characters followed by the string 'park'. Case sensitivity of the single quoted term in that follows LIKE depends on the specific SQL system being used.
-
-- Another way of isolating the same two patients would be using LIKE "%park%" which would select any row with a name that contains 'park', but would not be ideal in every situation because it would also include any patients who have the sequence of characters in "park" within their first name.
 
 
 ## Task 5: Select any patient whose blood_type value is null.
@@ -198,9 +206,15 @@ The result now looks like:
 | 4 | Allen Park | 40 | 172 | 87 | A |
 | 5 | Alice Green | 58 | 155 | 65 | B |
 
+
+
 ## Task 6: Sort the patients by Age: ascending and descending.
 
 - ORDER BY is used to sort rows by ascending ASC or descending DESC
+
+- If the column contains numbers, ASC sorts the numbers from least to greatest and DESC sorts the numbers from greatest to least.
+
+- If the column contains a string of letters, ASC sorts from A to Z (alphabetical order) and DESC sorts from Z to A (reverse alphabetical order). 
 
 Query: Sort by Age in ascending order (least to greatest) -> ORDER BY columnName ASC
 
